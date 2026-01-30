@@ -1,0 +1,12 @@
+streamlit
+yfinance
+pandas
+numpy
+pandas_ta
+scikit-learn
+xgboost
+lightgbm
+plotly
+protobuf
+matplotlib
+tensorflow-cpu
