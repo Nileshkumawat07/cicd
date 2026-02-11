@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forecast Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+        }
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .positive { color: #00ff88; }
+        .negative { color: #ff4d4d; }
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .btn-light {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ ticker }} Forecast</h2>
+        <a href="/" class="btn btn-light">New Forecast</a>
+    </div>
+
+    <!-- Metrics Row -->
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card p-3">
+                <div>Current Price</div>
+                <div class="metric-value">{{ price }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3">
+                <div>Bearish Limit</div>
+                <div class="metric-value negative">{{ bearish }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3">
+                <div>Bullish Limit</div>
+                <div class="metric-value positive">{{ bullish }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3">
+                <div>Coverage %</div>
+                <div class="metric-value">{{ coverage }}%</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PnL Section -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <div>Backtest PnL</div>
+                <div class="metric-value 
+                    {% if pnl > 0 %}positive{% else %}negative{% endif %}">
+                    {{ pnl }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="mt-5">
+        <div class="card p-4">
+            <div class="section-title">Historical Backtest Chart</div>
+            {{ graph_html | safe }}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-5 text-muted">
+        AI Stock Forecast System • Flask Production Version
+    </div>
+
+</div>
+
+</body>
+</html>
